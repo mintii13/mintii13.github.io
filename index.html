@@ -7,9 +7,9 @@
     <style>
         /* CSS cơ bản cho layout */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #24292e;
             max-width: 900px;
             margin: 0 auto;
             padding: 40px 20px;
@@ -22,106 +22,120 @@
             align-items: center;
             gap: 40px;
             margin-bottom: 40px;
-            border-bottom: 2px solid #eaecef;
+            border-bottom: 1px solid #eaecef;
             padding-bottom: 30px;
         }
         .header img {
             width: 180px; height: 180px;
             border-radius: 50%;
-            object-fit: cover; border: 1px solid #ddd;
+            object-fit: cover; border: 1px solid #e1e4e8;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-        .header-info h1 { margin: 0 0 10px 0; font-size: 2.5em; color: #24292e; }
-        .header-info h3 { margin: 0 0 15px 0; color: #586069; font-weight: normal; }
-        .contact-links { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; }
-        .contact-links a { font-weight: bold; }
+        .header-info h1 { margin: 0 0 8px 0; font-size: 2.5em; color: #24292e; letter-spacing: -0.5px;}
+        .header-info h3 { margin: 0 0 15px 0; color: #586069; font-weight: 400; }
+        .contact-links { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; font-size: 0.95em;}
+        .contact-links a { font-weight: 500; }
         
         h2 {
             color: #24292e;
             border-bottom: 1px solid #eaecef;
             padding-bottom: 8px; margin-top: 40px;
+            font-weight: 600;
         }
-        .item { margin-bottom: 20px; }
-        .item-title { font-weight: bold; font-size: 1.1em; }
-        .item-meta { color: #586069; font-size: 0.95em; margin-bottom: 5px; }
+        .item { margin-bottom: 24px; }
+        .item-title { font-weight: 600; font-size: 1.1em; }
+        .item-meta { color: #586069; font-size: 0.95em; margin-bottom: 8px; }
         ul { padding-left: 20px; margin-top: 5px; }
         li { margin-bottom: 12px; }
-        .paper-venue { font-style: italic; color: #0366d6; }
+        .paper-venue { font-style: italic; color: #0366d6; font-weight: 500;}
 
         *, *::before, *::after { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         img { max-width: 100%; }
 
-        /* --- CSS NÚT SỔ ẢNH VÀ KHUNG ẢNH DROPDOWN --- */
+        /* --- CSS NÚT SỔ ẢNH (MODERN PILL BUTTONS) --- */
         .toggle-btn {
-            font-size: 0.85em;
-            color: #d73a49; /* Màu đỏ nổi bật chút xíu cho nút bấm */
+            font-size: 0.8em;
+            color: #0366d6;
             cursor: pointer;
             margin-left: 8px;
-            font-weight: bold;
+            font-weight: 600;
             user-select: none;
-            background-color: #f6f8fa;
-            padding: 2px 6px;
-            border-radius: 4px;
-            border: 1px solid #e1e4e8;
-            transition: 0.2s;
+            background-color: #f1f8ff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid #c8e1ff;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            vertical-align: middle;
         }
         .toggle-btn:hover {
-            background-color: #e1e4e8;
+            background-color: #0366d6;
+            color: #ffffff;
+            border-color: #0366d6;
             text-decoration: none;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(3, 102, 214, 0.2);
         }
         
         .dropdown-content {
             display: none; /* Ẩn mặc định */
             flex-wrap: wrap;
             gap: 15px;
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #f6f8fa;
-            border-radius: 6px;
-            border-left: 3px solid #0366d6;
+            margin-top: 12px;
+            padding: 15px;
+            background-color: #fafbfc;
+            border-radius: 8px;
+            border: 1px solid #e1e4e8;
+            border-left: 4px solid #0366d6;
         }
         
         .dropdown-content img {
-            height: 120px; /* Chiều cao ảnh lúc thu nhỏ */
+            height: 120px;
             width: auto;
             object-fit: contain;
-            border-radius: 4px;
-            border: 1px solid #ddd;
+            border-radius: 6px;
+            border: 1px solid #d1d5da;
             cursor: zoom-in;
             background-color: white;
-            transition: 0.2s;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         .dropdown-content img:hover {
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            transform: translateY(-3px);
         }
 
         /* --- CSS HIỆU ỨNG BUNG ẢNH TO (MODAL) --- */
         .modal {
             display: none; position: fixed; z-index: 9999;
             padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%;
-            overflow: auto; background-color: rgba(0, 0, 0, 0.85);
+            overflow: auto; background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
         }
         .modal-content {
             margin: auto; display: block; max-width: 90%; max-height: 85vh;
             border-radius: 8px; object-fit: contain;
             animation-name: zoom; animation-duration: 0.3s;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
-        @keyframes zoom { from {transform:scale(0)} to {transform:scale(1)} }
+        @keyframes zoom { from {transform:scale(0.9); opacity:0;} to {transform:scale(1); opacity:1;} }
         
         .close {
-            position: absolute; top: 15px; right: 35px; color: #f1f1f1;
-            font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer;
+            position: absolute; top: 20px; right: 40px; color: #f1f1f1;
+            font-size: 40px; font-weight: bold; transition: 0.2s; cursor: pointer;
+            opacity: 0.7;
         }
-        .close:hover { color: #bbb; }
+        .close:hover { opacity: 1; color: #fff; }
 
         /* Responsive cho Mobile */
         @media (max-width: 700px) {
             body { padding: 24px 16px; }
             .header { flex-direction: column; text-align: center; gap: 20px; }
-            .header img { width: 135px; height: 135px; }
+            .header img { width: 140px; height: 140px; }
             .contact-links { justify-content: center; }
-            .dropdown-content img { height: auto; width: 100%; } /* Mobile ảnh bung full ngang */
+            .dropdown-content img { height: auto; width: 100%; }
         }
     </style>
 </head>
@@ -134,10 +148,10 @@
             <h3>AI Researcher & Software Engineer</h3>
             <div class="contact-links">
                 <a href="mailto:minhtringuyen130205@gmail.com">minhtringuyen130205@gmail.com</a>
-                <a href="https://github.com/mintii13" target="_blank">[GitHub]</a>
-                <a href="https://www.linkedin.com/in/minhtringuyen132/" target="_blank">[LinkedIn]</a>
-                <a href="https://orcid.org/0009-0007-1694-4881" target="_blank">[ORCID]</a>
-                <a href="https://www.youtube.com/watch?v=qMl8Wy972O8" target="_blank">[Self-Introduction]</a>
+                <a href="https://github.com/mintii13" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/minhtringuyen132/" target="_blank">LinkedIn</a>
+                <a href="https://orcid.org/0009-0007-1694-4881" target="_blank">ORCID</a>
+                <a href="https://www.youtube.com/watch?v=qMl8Wy972O8" target="_blank">Introduction</a>
             </div>
         </div>
     </div>
@@ -186,21 +200,21 @@
         <ul>
             <li>
                 <strong>Tri, N. M.</strong>, Duy, H. K., & Ngu, H. C. V. (2026). Statistical non-linear reconstruction loss for image anomaly detection. <span class="paper-venue">30th KES</span>. <a href="https://arxiv.org/abs/2607.12866" target="_blank">[arXiv]</a>
-                <span class="toggle-btn" onclick="toggleSection('kes2026')">📜 Xem Certificate</span>
+                <span class="toggle-btn" onclick="toggleSection('kes2026')">📄 View Certificate</span>
                 <div id="kes2026" class="dropdown-content">
                     <img class="cert-img" src="certi_page-0001.jpg" alt="KES 2026 Certificate">
                 </div>
             </li>
             <li>
                 <strong>Tri, N. M.</strong>, & Ngu, H. C. V. (2026). Bridging ANN-to-SNN Conversion for Reconstruction-Based Image Anomaly Detection. <span class="paper-venue">11th ICBDA</span>.
-                <span class="toggle-btn" onclick="toggleSection('icbda2026')">📜 Xem Certificate</span>
+                <span class="toggle-btn" onclick="toggleSection('icbda2026')">📄 View Certificate</span>
                 <div id="icbda2026" class="dropdown-content">
                     <img class="cert-img" src="ICBDA2026_Certi_page-0001.jpg" alt="ICBDA 2026 Certificate">
                 </div>
             </li>
             <li>
                 <strong>Tri, N. M.</strong>, & Ngu, H. C. V. (2026). Statistically Weighted Feature Reconstruction for Image Anomaly Detection. <span class="paper-venue">3rd IC-AISE</span>.
-                <span class="toggle-btn" onclick="toggleSection('icaise2026')">📜 Xem Certificate</span>
+                <span class="toggle-btn" onclick="toggleSection('icaise2026')">📄 View Certificate</span>
                 <div id="icaise2026" class="dropdown-content">
                     <img class="cert-img" src="ICAISE2026_Certi_page-0001.jpg" alt="IC-AISE 2026 Certificate">
                 </div>
@@ -210,18 +224,22 @@
             </li>
             <li>
                 <strong>Tri, N. M.</strong>, Khang, H. V., & Ngu, H. C. V. (2025). Unlocking the Potential of Spike-based Transformer Architecture. <span class="paper-venue">1st FETC</span>.
-                <span class="toggle-btn" onclick="toggleSection('fetc2025')">📜 Xem Certificate</span>
+                <span class="toggle-btn" onclick="toggleSection('fetc2025')">🖼️ View Gallery</span>
                 <div id="fetc2025" class="dropdown-content">
                     <img class="cert-img" src="certi.jpg" alt="FETC 2025 Certificate">
+                    <img class="cert-img" src="fetc_background.jpg" alt="FETC 2025 Background">
+                    <img class="cert-img" src="fetc_team.jpg" alt="FETC 2025 Team">
                 </div>
             </li>
             <li>
                 <strong>Tri, N. M.</strong>, Quan, T. K., & Ngu, H. C. V. (2025). A New Construction Method for B+-tree Structure with GPGPU. <span class="paper-venue">10th ICBDA</span>. <br><strong>Award:</strong> Best Oral Presenter
-                <span class="toggle-btn" onclick="toggleSection('icbda2025')">🏆 Xem Chứng nhận & Ảnh</span>
+                <span class="toggle-btn" onclick="toggleSection('icbda2025')">🏆 View Awards</span>
                 <div id="icbda2025" class="dropdown-content">
                     <img class="cert-img" src="ICBDA2025_Certi_page-0001.jpg" alt="ICBDA 2025 Certificate">
                     <img class="cert-img" src="ICBDA2025_BestOralPresenter_page-0001.jpg" alt="ICBDA 2025 Best Oral Presenter">
                     <img class="cert-img" src="BestOralAward.jpg" alt="Best Oral Award Moment">
+                    <img class="cert-img" src="BestOralAward_2.jpg" alt="Best Oral Award Moment 2">
+                    <img class="cert-img" src="ICBDA.jpg" alt="ICBDA 2025 Group">
                 </div>
             </li>
         </ul>
@@ -232,21 +250,44 @@
         <ul>
             <li>
                 <strong>Champion -- National FPT Education Student Research Festival 2026:</strong> Awarded the highest prize at the national-level student research festival organized by FPT Education.
-                <span class="toggle-btn" onclick="toggleSection('resfes2026')">📸 Xem Ảnh</span>
+                <span class="toggle-btn" onclick="toggleSection('resfes2026')">🏆 View Moments</span>
                 <div id="resfes2026" class="dropdown-content">
                     <img class="cert-img" src="Resfes_Champion.jpg" alt="ResFes Champion">
+                    <img class="cert-img" src="Resfes_Champion_2.jpg" alt="ResFes Champion 2">
+                    <img class="cert-img" src="Resfes_poster.jpg" alt="ResFes Poster Session">
+                    <img class="cert-img" src="Resfes_presentation.jpg" alt="ResFes Presentation">
                 </div>
             </li>
             <li>
                 <strong>FPT University Ho Chi Minh City Scientific Research Competition:</strong> 2 First Prizes (Summer 2025, Spring 2026); 3 Second Prizes (Fall 2024, Spring 2025, Fall 2025).
-                <span class="toggle-btn" onclick="toggleSection('resfes-uni')">📸 Xem Ảnh</span>
+                <span class="toggle-btn" onclick="toggleSection('resfes-uni')">🖼️ View Gallery</span>
                 <div id="resfes-uni" class="dropdown-content">
                     <img class="cert-img" src="resfesFall24.jpg" alt="ResFes Fall 2024">
+                    <img class="cert-img" src="resfesFall24_2.jpg" alt="ResFes Fall 2024 2">
+                    <img class="cert-img" src="resfesSpring25.jpg" alt="ResFes Spring 2025">
+                    <img class="cert-img" src="resfesSummer25.jpg" alt="ResFes Summer 2025">
                     <img class="cert-img" src="resfesFall25.jpg" alt="ResFes Fall 2025">
+                    <img class="cert-img" src="resfesFall25_2.jpg" alt="ResFes Fall 2025 2">
+                    <img class="cert-img" src="resfesSpring26.jpg" alt="ResFes Spring 2026">
                 </div>
             </li>
-            <li><strong>Top 100 Students (4 Consecutive Semesters):</strong> Consistently ranked in the elite Top 100 students across the entire FPT University HCMC campus.</li>
-            <li><strong>Top 5 Outstanding Students -- Engineering Faculty (Fall 2024):</strong> Achieving a <strong>GPA of 9.93/10</strong> during the semester.</li>
+            <li>
+                <strong>Top 100 Students (4 Consecutive Semesters):</strong> Consistently ranked in the elite Top 100 students across the entire FPT University HCMC campus.
+                <span class="toggle-btn" onclick="toggleSection('top100')">🖼️ View Gallery</span>
+                <div id="top100" class="dropdown-content">
+                    <img class="cert-img" src="top100_Spring2024.jpg" alt="Top 100 Spring 2024">
+                    <img class="cert-img" src="top100_Summer2024.jpg" alt="Top 100 Summer 2024">
+                    <img class="cert-img" src="top100_Spring2025.jpg" alt="Top 100 Spring 2025">
+                </div>
+            </li>
+            <li>
+                <strong>Top 5 Outstanding Students -- Engineering Faculty (Fall 2024):</strong> Achieving a <strong>GPA of 9.93/10</strong> during the semester.
+                <span class="toggle-btn" onclick="toggleSection('top5')">🖼️ View Gallery</span>
+                <div id="top5" class="dropdown-content">
+                    <img class="cert-img" src="top5_background.jpg" alt="Top 5 Engineering Fall 2024">
+                </div>
+            </li>
+            <li><strong>Third Prize -- Ho Chi Minh City Excellent Student Competition in Mathematics (Grade 12, 2023).</strong></li>
         </ul>
     </div>
 
@@ -255,7 +296,26 @@
         <div class="item">
             <div class="item-title">History Talk</div>
             <div class="item-meta">Project Leader & AI Tech Lead | Jan 2026 - April 2026</div>
-            <ul><li>Architected RAG pipeline and engineered AI prompt mechanisms for historical education.</li></ul>
+            <ul>
+                <li>Conceived and led an ed-tech solution designed to transform passive history learning into an active, engaging experience for students.</li>
+                <li>Architected the Retrieval-Augmented Generation (RAG) pipeline and engineered the AI prompt mechanism to guarantee historical precision.</li>
+                <li>Managed the deployment of the dedicated AI Server, ensuring high availability and seamless data streaming.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <div class="item-title">Gender Healthy Service Management System</div>
+            <div class="item-meta">Backend Developer & Scrum Master | June 2025 - Aug 2025</div>
+            <ul>
+                <li>Served as Scrum Master for a team of 4, facilitating progress tracking, agile rituals, and maintaining system lifecycle alignment.</li>
+                <li>Built a scalable server using Express.js with TypeScript and successfully implemented feature integrations.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <div class="item-title">Kindness Fieldtrip</div>
+            <div class="item-meta">Project Organizer & Leader | Jan 2024 - April 2024</div>
+            <ul>
+                <li>Led a student charity campaign, successfully raising over 20,000,000 VND through fundraising events.</li>
+            </ul>
         </div>
     </div>
 
@@ -265,6 +325,7 @@
             <li><strong>Research Interests:</strong> Deep Learning, Unsupervised Anomaly Detection, Computer Vision, Spiking Neural Networks</li>
             <li><strong>Programming Languages:</strong> Python, Java, TypeScript, JavaScript, SQL, PostgreSQL, MongoDB</li>
             <li><strong>Frameworks & Tools:</strong> PyTorch, Express.js, React JS, Git/GitHub, Docker, Linux</li>
+            <li><strong>Languages:</strong> Vietnamese (Native), English (IELTS 6.0, 2023; retake planned in 2026)</li>
         </ul>
     </div>
 
@@ -276,7 +337,7 @@
 
     <!-- Script điều khiển chức năng thả xuống và popup -->
     <script>
-        // 1. Hàm Dropdown (Thả xuống/Thu lên)
+        // Hàm Dropdown (Thả xuống/Thu lên)
         function toggleSection(id) {
             var content = document.getElementById(id);
             if (content.style.display === "none" || content.style.display === "") {
@@ -286,12 +347,11 @@
             }
         }
 
-        // 2. Logic cho việc Phóng to ảnh (Modal)
+        // Logic cho việc Phóng to ảnh (Modal)
         var modal = document.getElementById("imageModal");
         var modalImg = document.getElementById("img01");
-
-        // Lấy tất cả ảnh có class cert-img
         var images = document.getElementsByClassName("cert-img");
+        
         for (var i = 0; i < images.length; i++) {
             images[i].onclick = function() {
                 modal.style.display = "block";

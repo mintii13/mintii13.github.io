@@ -91,7 +91,6 @@
             color: #0366d6;
         }
 
-
         /* Giúp kích thước phần tử không vượt khỏi màn hình */
         *,
         *::before,
@@ -116,12 +115,79 @@
             word-break: normal;
         }
 
+        /* --- CSS CHO HIỆU ỨNG BUNG ẢNH (MODAL) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 8px;
+            object-fit: contain;
+            animation-name: zoom;
+            animation-duration: 0.3s;
+        }
+        
+        @keyframes zoom {
+            from {transform:scale(0)}
+            to {transform:scale(1)}
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .cert-img {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .cert-img:hover {
+            opacity: 0.7;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
         /* Tablet và điện thoại */
         @media (max-width: 700px) {
-            body {
-                padding: 24px 16px;
-            }
-
+            body { padding: 24px 16px; }
             .header {
                 flex-direction: column;
                 text-align: center;
@@ -129,92 +195,33 @@
                 margin-bottom: 30px;
                 padding-bottom: 24px;
             }
-
             .header img {
                 width: 135px;
                 height: 135px;
             }
-
-            .header-info {
-                width: 100%;
-            }
-
-            .header-info h1 {
-                font-size: 2rem;
-                line-height: 1.2;
-            }
-
-            .header-info h3 {
-                font-size: 1.05rem;
-                line-height: 1.4;
-            }
-
-            .contact-links {
-                justify-content: center;
-                gap: 10px 14px;
-            }
-
-            .contact-links a:first-child {
-                flex-basis: 100%;
-            }
-
-            h2 {
-                margin-top: 32px;
-                font-size: 1.4rem;
-            }
-
-            .section > h3 {
-                font-size: 1.08rem;
-                line-height: 1.4;
-            }
-
-            ul {
-                padding-left: 20px;
-            }
+            .header-info { width: 100%; }
+            .header-info h1 { font-size: 2rem; line-height: 1.2; }
+            .header-info h3 { font-size: 1.05rem; line-height: 1.4; }
+            .contact-links { justify-content: center; gap: 10px 14px; }
+            .contact-links a:first-child { flex-basis: 100%; }
+            h2 { margin-top: 32px; font-size: 1.4rem; }
+            .section > h3 { font-size: 1.08rem; line-height: 1.4; }
+            ul { padding-left: 20px; }
         }
 
         /* Điện thoại màn hình nhỏ */
         @media (max-width: 420px) {
-            body {
-                padding: 20px 14px;
-                font-size: 15px;
-            }
-
-            .header img {
-                width: 115px;
-                height: 115px;
-            }
-
-            .header-info h1 {
-                font-size: 1.7rem;
-            }
-
-            .header-info h3 {
-                font-size: 1rem;
-            }
-
-            .contact-links {
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            h2 {
-                font-size: 1.25rem;
-            }
-
-            .item-title {
-                font-size: 1.05rem;
-            }
-
-            .item-meta {
-                font-size: 0.9rem;
-            }
-
-            ul {
-                padding-left: 18px;
-            }
+            body { padding: 20px 14px; font-size: 15px; }
+            .header img { width: 115px; height: 115px; }
+            .header-info h1 { font-size: 1.7rem; }
+            .header-info h3 { font-size: 1rem; }
+            .contact-links { flex-direction: column; gap: 8px; }
+            h2 { font-size: 1.25rem; }
+            .item-title { font-size: 1.05rem; }
+            .item-meta { font-size: 0.9rem; }
+            ul { padding-left: 18px; }
+            .cert-img { width: 100%; height: auto; aspect-ratio: 3/2; } /* Hiển thị ảnh to hơn trên mobile */
         }
-
     </style>
 </head>
 <body>
@@ -358,6 +365,22 @@
     </div>
 
     <div class="section">
+        <h2>Certificates & Moments</h2>
+        <div class="image-gallery">
+            <img class="cert-img" src="ICBDA2025_BestOralPresenter_page-0001.jpg" alt="ICBDA 2025 Best Oral Presenter">
+            <img class="cert-img" src="ICBDA2025_Certi_page-0001.jpg" alt="ICBDA 2025 Certificate">
+            <img class="cert-img" src="certi.jpg" alt="FETC 2025 Certificate">
+            <img class="cert-img" src="ICAISE2026_Certi_page-0001.jpg" alt="IC-AISE 2026 Certificate">
+            <img class="cert-img" src="ICBDA2026_Certi_page-0001.jpg" alt="ICBDA 2026 Certificate">
+            <img class="cert-img" src="certi_page-0001.jpg" alt="KES 2026 Certificate">
+            <img class="cert-img" src="BestOralAward.jpg" alt="Best Oral Award Moment">
+            <img class="cert-img" src="Resfes_Champion.jpg" alt="ResFes Champion">
+            <img class="cert-img" src="resfesFall24.jpg" alt="ResFes Fall 2024">
+            <img class="cert-img" src="resfesFall25.jpg" alt="ResFes Fall 2025">
+        </div>
+    </div>
+
+    <div class="section">
         <h2>Skills</h2>
         <ul>
             <li><strong>Research Interests:</strong> Deep Learning, Unsupervised Anomaly Detection, Computer Vision, Spiking Neural Networks</li>
@@ -367,5 +390,36 @@
         </ul>
     </div>
 
+    <!-- Khung Modal (Popup) -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <!-- Script xử lý sự kiện click -->
+    <script>
+        var modal = document.getElementById("imageModal");
+        var modalImg = document.getElementById("img01");
+
+        var images = document.getElementsByClassName("cert-img");
+        for (var i = 0; i < images.length; i++) {
+            images[i].onclick = function(){
+                modal.style.display = "block";
+                modalImg.src = this.src;
+            }
+        }
+
+        var span = document.getElementsByClassName("close")[0];
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        modal.onclick = function(event) {
+            if (event.target !== modalImg) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>

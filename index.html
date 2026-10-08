@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nguyen Minh Tri | Student Researcher</title>
     <style>
-        /* CSS tích hợp để trang web tối giản, tải cực nhanh */
+        /* CSS cơ bản cho layout */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -14,13 +14,9 @@
             margin: 0 auto;
             padding: 40px 20px;
         }
-        a {
-            color: #0366d6;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        
         .header {
             display: flex;
             align-items: center;
@@ -30,197 +26,102 @@
             padding-bottom: 30px;
         }
         .header img {
-            width: 180px;
-            height: 180px;
+            width: 180px; height: 180px;
             border-radius: 50%;
-            object-fit: cover;
-            border: 1px solid #ddd;
+            object-fit: cover; border: 1px solid #ddd;
         }
-        .header-info h1 {
-            margin: 0 0 10px 0;
-            font-size: 2.5em;
-            color: #24292e;
-        }
-        .header-info h3 {
-            margin: 0 0 15px 0;
-            color: #586069;
-            font-weight: normal;
-        }
-        .contact-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            align-items: center;
-        }
-        .contact-links a {
-            font-weight: bold;
-        }
+        .header-info h1 { margin: 0 0 10px 0; font-size: 2.5em; color: #24292e; }
+        .header-info h3 { margin: 0 0 15px 0; color: #586069; font-weight: normal; }
+        .contact-links { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; }
+        .contact-links a { font-weight: bold; }
+        
         h2 {
             color: #24292e;
             border-bottom: 1px solid #eaecef;
-            padding-bottom: 8px;
-            margin-top: 40px;
+            padding-bottom: 8px; margin-top: 40px;
         }
-        .item {
-            margin-bottom: 20px;
-        }
-        .item-title {
-            font-weight: bold;
-            font-size: 1.1em;
-        }
-        .item-meta {
-            color: #586069;
-            font-size: 0.95em;
-            margin-bottom: 5px;
-        }
-        ul {
-            padding-left: 20px;
-            margin-top: 5px;
-        }
-        li {
-            margin-bottom: 8px;
-        }
-        .paper-title {
-            font-weight: bold;
-        }
-        .paper-authors {
-            color: #24292e;
-        }
-        .paper-venue {
-            font-style: italic;
-            color: #0366d6;
-        }
+        .item { margin-bottom: 20px; }
+        .item-title { font-weight: bold; font-size: 1.1em; }
+        .item-meta { color: #586069; font-size: 0.95em; margin-bottom: 5px; }
+        ul { padding-left: 20px; margin-top: 5px; }
+        li { margin-bottom: 12px; }
+        .paper-venue { font-style: italic; color: #0366d6; }
 
-        /* Giúp kích thước phần tử không vượt khỏi màn hình */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        img { max-width: 100%; }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        img {
-            max-width: 100%;
-        }
-
-        /* Tránh email, URL và từ dài làm tràn màn hình */
-        a,
-        p,
-        li,
-        .item-meta {
-            overflow-wrap: anywhere;
-            word-break: normal;
-        }
-
-        /* --- CSS CHO HIỆU ỨNG BUNG ẢNH (MODAL) --- */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            padding-top: 50px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.85);
-        }
-        
-        .modal-content {
-            margin: auto;
-            display: block;
-            max-width: 90%;
-            max-height: 85vh;
-            border-radius: 8px;
-            object-fit: contain;
-            animation-name: zoom;
-            animation-duration: 0.3s;
-        }
-        
-        @keyframes zoom {
-            from {transform:scale(0)}
-            to {transform:scale(1)}
-        }
-        
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
+        /* --- CSS NÚT SỔ ẢNH VÀ KHUNG ẢNH DROPDOWN --- */
+        .toggle-btn {
+            font-size: 0.85em;
+            color: #d73a49; /* Màu đỏ nổi bật chút xíu cho nút bấm */
             cursor: pointer;
+            margin-left: 8px;
+            font-weight: bold;
+            user-select: none;
+            background-color: #f6f8fa;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid #e1e4e8;
+            transition: 0.2s;
         }
-        
-        .close:hover,
-        .close:focus {
-            color: #bbb;
+        .toggle-btn:hover {
+            background-color: #e1e4e8;
             text-decoration: none;
-            cursor: pointer;
         }
-
-        .image-gallery {
-            display: flex;
+        
+        .dropdown-content {
+            display: none; /* Ẩn mặc định */
             flex-wrap: wrap;
             gap: 15px;
-            margin-top: 15px;
-        }
-
-        .cert-img {
-            width: 150px;
-            height: 100px;
-            object-fit: cover;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f6f8fa;
             border-radius: 6px;
+            border-left: 3px solid #0366d6;
+        }
+        
+        .dropdown-content img {
+            height: 120px; /* Chiều cao ảnh lúc thu nhỏ */
+            width: auto;
+            object-fit: contain;
+            border-radius: 4px;
             border: 1px solid #ddd;
-            cursor: pointer;
-            transition: 0.3s;
+            cursor: zoom-in;
+            background-color: white;
+            transition: 0.2s;
+        }
+        .dropdown-content img:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
         }
 
-        .cert-img:hover {
-            opacity: 0.7;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        /* --- CSS HIỆU ỨNG BUNG ẢNH TO (MODAL) --- */
+        .modal {
+            display: none; position: fixed; z-index: 9999;
+            padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%;
+            overflow: auto; background-color: rgba(0, 0, 0, 0.85);
         }
+        .modal-content {
+            margin: auto; display: block; max-width: 90%; max-height: 85vh;
+            border-radius: 8px; object-fit: contain;
+            animation-name: zoom; animation-duration: 0.3s;
+        }
+        @keyframes zoom { from {transform:scale(0)} to {transform:scale(1)} }
+        
+        .close {
+            position: absolute; top: 15px; right: 35px; color: #f1f1f1;
+            font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer;
+        }
+        .close:hover { color: #bbb; }
 
-        /* Tablet và điện thoại */
+        /* Responsive cho Mobile */
         @media (max-width: 700px) {
             body { padding: 24px 16px; }
-            .header {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
-                margin-bottom: 30px;
-                padding-bottom: 24px;
-            }
-            .header img {
-                width: 135px;
-                height: 135px;
-            }
-            .header-info { width: 100%; }
-            .header-info h1 { font-size: 2rem; line-height: 1.2; }
-            .header-info h3 { font-size: 1.05rem; line-height: 1.4; }
-            .contact-links { justify-content: center; gap: 10px 14px; }
-            .contact-links a:first-child { flex-basis: 100%; }
-            h2 { margin-top: 32px; font-size: 1.4rem; }
-            .section > h3 { font-size: 1.08rem; line-height: 1.4; }
-            ul { padding-left: 20px; }
-        }
-
-        /* Điện thoại màn hình nhỏ */
-        @media (max-width: 420px) {
-            body { padding: 20px 14px; font-size: 15px; }
-            .header img { width: 115px; height: 115px; }
-            .header-info h1 { font-size: 1.7rem; }
-            .header-info h3 { font-size: 1rem; }
-            .contact-links { flex-direction: column; gap: 8px; }
-            h2 { font-size: 1.25rem; }
-            .item-title { font-size: 1.05rem; }
-            .item-meta { font-size: 0.9rem; }
-            ul { padding-left: 18px; }
-            .cert-img { width: 100%; height: auto; aspect-ratio: 3/2; } /* Hiển thị ảnh to hơn trên mobile */
+            .header { flex-direction: column; text-align: center; gap: 20px; }
+            .header img { width: 135px; height: 135px; }
+            .contact-links { justify-content: center; }
+            .dropdown-content img { height: auto; width: 100%; } /* Mobile ảnh bung full ngang */
         }
     </style>
 </head>
@@ -236,7 +137,7 @@
                 <a href="https://github.com/mintii13" target="_blank">[GitHub]</a>
                 <a href="https://www.linkedin.com/in/minhtringuyen132/" target="_blank">[LinkedIn]</a>
                 <a href="https://orcid.org/0009-0007-1694-4881" target="_blank">[ORCID]</a>
-                <a href="https://www.youtube.com/watch?v=qMl8Wy972O8"  target="_blank">[Self-Introduction]</a>
+                <a href="https://www.youtube.com/watch?v=qMl8Wy972O8" target="_blank">[Self-Introduction]</a>
             </div>
         </div>
     </div>
@@ -253,28 +154,20 @@
             <div class="item-title">FPT University</div>
             <div class="item-meta">Bachelor of Information Technology | GPA: <strong>9.21/10.0 (3.88/4.0)</strong> | Oct 2023 - Jan 2027 (Expected)</div>
         </div>
-
         <div class="item">
             <div class="item-title">Experimental High School -- Ho Chi Minh City University of Education</div>
             <div class="item-meta">Mathematics Specialized Class | 2020 - 2023</div>
-            <ul>
-                <li>Three-year average GPA: <strong>9.1/10</strong>; Grade 12 Mathematics average: <strong>10.0/10</strong>.</li>
-            </ul>
+            <ul><li>Three-year average GPA: <strong>9.1/10</strong>; Grade 12 Mathematics average: <strong>10.0/10</strong>.</li></ul>
         </div>
-
         <div class="item">
             <div class="item-title">AI-Cybersecurity Lab - FPT University</div>
             <div class="item-meta">AIC Lab Research Assistant | Oct 2024 - Present</div>
-            <ul>
-                <li>Conducted research on Spiking Neural Networks and Unsupervised Anomaly Detection, resulting in multiple publications and research competition awards.</li>
-            </ul>
+            <ul><li>Conducted research on Spiking Neural Networks and Unsupervised Anomaly Detection, resulting in multiple publications and research competition awards.</li></ul>
         </div>
         <div class="item">
             <div class="item-title">Amazing Tech Company</div>
             <div class="item-meta">Intern AI Engineering | Sep 2025 - Dec 2025</div>
-            <ul>
-                <li>Built a reinforcement learning application for a tank shooter game bot.</li>
-            </ul>
+            <ul><li>Built a reinforcement learning application for a tank shooter game bot.</li></ul>
         </div>
     </div>
 
@@ -283,43 +176,77 @@
 
         <h3 style="color: #24292e; border-bottom: 1px dashed #eaecef; padding-bottom: 5px; margin-top: 25px;">Articles & Journals</h3>
         <ul>
-            <li>
-                <strong>Tri, N. M.</strong>, & Ngu, H. C. V. (2026). S2AD: Statistical Spiking Neural Network for Training-Free Image Anomaly Detection via Firing Rate Deviation. <span class="paper-venue">Neurocomputing</span>. [Under review]
-            </li>
-            <li>
-                <strong>Tri, N. M.</strong>, Duy, H. K., & Ngu, H. C. V. (2026). Reconstruction-based Unified Image Anomaly Detection via Dual Memory and Non-linear Reconstruction Loss. [Under review]
-            </li>
-            <li>
-                Duy, H. K., <strong>Tri, N. M.</strong>, & Ngu, H. C. V. (2026). BoRAD: Bootstrap your own representations for multi-class anomaly detection. [Under review]
-                <a href="https://arxiv.org/abs/2606.14129" target="_blank">[arXiv]</a>
-            </li>
-            <li>
-                Duy, H. K., Thuan, N. T., <strong>Tri, N. M.</strong>, & Ngu, H. C. V. (2026). Adaptive Noising via Analytical Gradient Feature Influence for Image Anomaly Detection. [Under review]
-            </li>
+            <li><strong>Tri, N. M.</strong>, & Ngu, H. C. V. (2026). S2AD: Statistical Spiking Neural Network for Training-Free Image Anomaly Detection via Firing Rate Deviation. <span class="paper-venue">Neurocomputing</span>. [Under review]</li>
+            <li><strong>Tri, N. M.</strong>, Duy, H. K., & Ngu, H. C. V. (2026). Reconstruction-based Unified Image Anomaly Detection via Dual Memory and Non-linear Reconstruction Loss. [Under review]</li>
+            <li>Duy, H. K., <strong>Tri, N. M.</strong>, & Ngu, H. C. V. (2026). BoRAD: Bootstrap your own representations for multi-class anomaly detection. [Under review] <a href="https://arxiv.org/abs/2606.14129" target="_blank">[arXiv]</a></li>
+            <li>Duy, H. K., Thuan, N. T., <strong>Tri, N. M.</strong>, & Ngu, H. C. V. (2026). Adaptive Noising via Analytical Gradient Feature Influence for Image Anomaly Detection. [Under review]</li>
         </ul>
 
         <h3 style="color: #24292e; border-bottom: 1px dashed #eaecef; padding-bottom: 5px; margin-top: 30px;">Conference Proceedings</h3>
         <ul>
             <li>
-                <strong>Tri, N. M.</strong>, Duy, H. K., & Ngu, H. C. V. (2026). Statistical non-linear reconstruction loss for image anomaly detection. <span class="paper-venue">30th International Conference on Knowledge-Based and Intelligent Information & Engineering Systems (KES)</span>. 
-                <a href="https://arxiv.org/abs/2607.12866" target="_blank">[arXiv]</a>
+                <strong>Tri, N. M.</strong>, Duy, H. K., & Ngu, H. C. V. (2026). Statistical non-linear reconstruction loss for image anomaly detection. <span class="paper-venue">30th KES</span>. <a href="https://arxiv.org/abs/2607.12866" target="_blank">[arXiv]</a>
+                <span class="toggle-btn" onclick="toggleSection('kes2026')">📜 Xem Certificate</span>
+                <div id="kes2026" class="dropdown-content">
+                    <img class="cert-img" src="certi_page-0001.jpg" alt="KES 2026 Certificate">
+                </div>
             </li>
             <li>
-                <strong>Tri, N. M.</strong>, & Ngu, H. C. V. (2026). Bridging ANN-to-SNN Conversion for Reconstruction-Based Image Anomaly Detection. <span class="paper-venue">11th International Conference on Big Data Analytics (ICBDA)</span>.
+                <strong>Tri, N. M.</strong>, & Ngu, H. C. V. (2026). Bridging ANN-to-SNN Conversion for Reconstruction-Based Image Anomaly Detection. <span class="paper-venue">11th ICBDA</span>.
+                <span class="toggle-btn" onclick="toggleSection('icbda2026')">📜 Xem Certificate</span>
+                <div id="icbda2026" class="dropdown-content">
+                    <img class="cert-img" src="ICBDA2026_Certi_page-0001.jpg" alt="ICBDA 2026 Certificate">
+                </div>
             </li>
             <li>
-                <strong>Tri, N. M.</strong>, & Ngu, H. C. V. (2026). Statistically Weighted Feature Reconstruction for Image Anomaly Detection. <span class="paper-venue">3rd International Conference on AI in Systems Engineering (IC-AISE)</span>.
+                <strong>Tri, N. M.</strong>, & Ngu, H. C. V. (2026). Statistically Weighted Feature Reconstruction for Image Anomaly Detection. <span class="paper-venue">3rd IC-AISE</span>.
+                <span class="toggle-btn" onclick="toggleSection('icaise2026')">📜 Xem Certificate</span>
+                <div id="icaise2026" class="dropdown-content">
+                    <img class="cert-img" src="ICAISE2026_Certi_page-0001.jpg" alt="IC-AISE 2026 Certificate">
+                </div>
             </li>
             <li>
-                <strong>Tri, N. M.</strong>, Dinh, T. Q., Khai, V. D. D., Thanh, N. C., Bao, D. Q., & Ngu, H. C. V. (2026). Evaluation and Investigation of RAG Techniques for the Vietnamese History Domain. <span class="paper-venue">1st EAI FPT International Conference on Intelligent Systems and Advanced Technologies (EAI FISAT)</span>.
+                <strong>Tri, N. M.</strong>, Dinh, T. Q., Khai, V. D. D., Thanh, N. C., Bao, D. Q., & Ngu, H. C. V. (2026). Evaluation and Investigation of RAG Techniques for the Vietnamese History Domain. <span class="paper-venue">1st EAI FISAT</span>.
             </li>
             <li>
-                <strong>Tri, N. M.</strong>, Khang, H. V., & Ngu, H. C. V. (2025). Unlocking the Potential of Spike-based Transformer Architecture: Investigating Spiking Neural Models for Classification Task. <span class="paper-venue">1st FPT International Conference on Emerging Trends in Computing (FETC)</span>.
+                <strong>Tri, N. M.</strong>, Khang, H. V., & Ngu, H. C. V. (2025). Unlocking the Potential of Spike-based Transformer Architecture. <span class="paper-venue">1st FETC</span>.
+                <span class="toggle-btn" onclick="toggleSection('fetc2025')">📜 Xem Certificate</span>
+                <div id="fetc2025" class="dropdown-content">
+                    <img class="cert-img" src="certi.jpg" alt="FETC 2025 Certificate">
+                </div>
             </li>
             <li>
-                <strong>Tri, N. M.</strong>, Quan, T. K., & Ngu, H. C. V. (2025). A New Construction Method for B+-tree Structure with GPGPU. <span class="paper-venue">10th International Conference on Big Data Analytics (ICBDA)</span>.
-                <br><strong>Award:</strong> Best Oral Presenter
+                <strong>Tri, N. M.</strong>, Quan, T. K., & Ngu, H. C. V. (2025). A New Construction Method for B+-tree Structure with GPGPU. <span class="paper-venue">10th ICBDA</span>. <br><strong>Award:</strong> Best Oral Presenter
+                <span class="toggle-btn" onclick="toggleSection('icbda2025')">🏆 Xem Chứng nhận & Ảnh</span>
+                <div id="icbda2025" class="dropdown-content">
+                    <img class="cert-img" src="ICBDA2025_Certi_page-0001.jpg" alt="ICBDA 2025 Certificate">
+                    <img class="cert-img" src="ICBDA2025_BestOralPresenter_page-0001.jpg" alt="ICBDA 2025 Best Oral Presenter">
+                    <img class="cert-img" src="BestOralAward.jpg" alt="Best Oral Award Moment">
+                </div>
             </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Honors & Awards</h2>
+        <ul>
+            <li>
+                <strong>Champion -- National FPT Education Student Research Festival 2026:</strong> Awarded the highest prize at the national-level student research festival organized by FPT Education.
+                <span class="toggle-btn" onclick="toggleSection('resfes2026')">📸 Xem Ảnh</span>
+                <div id="resfes2026" class="dropdown-content">
+                    <img class="cert-img" src="Resfes_Champion.jpg" alt="ResFes Champion">
+                </div>
+            </li>
+            <li>
+                <strong>FPT University Ho Chi Minh City Scientific Research Competition:</strong> 2 First Prizes (Summer 2025, Spring 2026); 3 Second Prizes (Fall 2024, Spring 2025, Fall 2025).
+                <span class="toggle-btn" onclick="toggleSection('resfes-uni')">📸 Xem Ảnh</span>
+                <div id="resfes-uni" class="dropdown-content">
+                    <img class="cert-img" src="resfesFall24.jpg" alt="ResFes Fall 2024">
+                    <img class="cert-img" src="resfesFall25.jpg" alt="ResFes Fall 2025">
+                </div>
+            </li>
+            <li><strong>Top 100 Students (4 Consecutive Semesters):</strong> Consistently ranked in the elite Top 100 students across the entire FPT University HCMC campus.</li>
+            <li><strong>Top 5 Outstanding Students -- Engineering Faculty (Fall 2024):</strong> Achieving a <strong>GPA of 9.93/10</strong> during the semester.</li>
         </ul>
     </div>
 
@@ -328,55 +255,7 @@
         <div class="item">
             <div class="item-title">History Talk</div>
             <div class="item-meta">Project Leader & AI Tech Lead | Jan 2026 - April 2026</div>
-            <ul>
-                <li>Conceived and led an ed-tech solution designed to transform passive history learning into an active, engaging experience for students through personalized interactive AI conversations.</li>
-                <li>Architected the Retrieval-Augmented Generation (RAG) pipeline and engineered the AI prompt mechanism to guarantee historical precision while minimizing model hallucinations.</li>
-                <li>Managed the deployment of the dedicated AI Server, ensuring high availability and seamless data streaming to back-end and front-end applications.</li>
-            </ul>
-        </div>
-        <div class="item">
-            <div class="item-title">Gender Healthy Service Management System</div>
-            <div class="item-meta">Backend Developer & Scrum Master | June 2025 - Aug 2025</div>
-            <ul>
-                <li>Served as Scrum Master for a team of 4, facilitating progress tracking, agile rituals, and maintaining system lifecycle alignment.</li>
-                <li>Designed the relational database structure, engineered the Entity-Relationship Diagrams (ERD), Use Case diagrams, and compiled the comprehensive Software Requirement Specification (SRS) document.</li>
-                <li>Built a scalable server using Express.js with TypeScript and successfully implemented feature integrations including Google Meet, Google Calendar APIs, and MoMo Payment gateway.</li>
-            </ul>
-        </div>
-        <div class="item">
-            <div class="item-title">Kindness Fieldtrip</div>
-            <div class="item-meta">Project Organizer & Leader | Jan 2024 - April 2024</div>
-            <ul>
-                <li>Led a student charity campaign, successfully raising over 20,000,000 VND through fundraising events.</li>
-                <li>Organized a comprehensive volunteering trip to the SOS Children's Village, coordinating donation distribution, recreational games, and emotional support activities for orphaned children.</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Honors & Awards</h2>
-        <ul>
-            <li><strong>Champion -- National FPT Education Student Research Festival 2026:</strong> Awarded the highest prize at the national-level student research festival organized by FPT Education.</li>
-            <li><strong>FPT University Ho Chi Minh City Scientific Research Competition:</strong> 2 First Prizes (Summer 2025, Spring 2026); 3 Second Prizes (Fall 2024, Spring 2025, Fall 2025).</li>
-            <li><strong>Top 100 Students (4 Consecutive Semesters):</strong> Consistently ranked in the elite Top 100 students across the entire FPT University HCMC campus for academic excellence and outstanding contributions.</li>
-            <li><strong>Top 5 Outstanding Students -- Engineering Faculty (Fall 2024 / Semester 3):</strong> Officially recognized among the top 5 most exceptional students in the faculty for excellent academic performance, achieving a <strong>GPA of 9.93/10</strong> during the semester.</li>
-            <li><strong>Third Prize -- Ho Chi Minh City Excellent Student Competition in Mathematics (Grade 12, 2023).</strong></li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>Certificates & Moments</h2>
-        <div class="image-gallery">
-            <img class="cert-img" src="ICBDA2025_BestOralPresenter_page-0001.jpg" alt="ICBDA 2025 Best Oral Presenter">
-            <img class="cert-img" src="ICBDA2025_Certi_page-0001.jpg" alt="ICBDA 2025 Certificate">
-            <img class="cert-img" src="certi.jpg" alt="FETC 2025 Certificate">
-            <img class="cert-img" src="ICAISE2026_Certi_page-0001.jpg" alt="IC-AISE 2026 Certificate">
-            <img class="cert-img" src="ICBDA2026_Certi_page-0001.jpg" alt="ICBDA 2026 Certificate">
-            <img class="cert-img" src="certi_page-0001.jpg" alt="KES 2026 Certificate">
-            <img class="cert-img" src="BestOralAward.jpg" alt="Best Oral Award Moment">
-            <img class="cert-img" src="Resfes_Champion.jpg" alt="ResFes Champion">
-            <img class="cert-img" src="resfesFall24.jpg" alt="ResFes Fall 2024">
-            <img class="cert-img" src="resfesFall25.jpg" alt="ResFes Fall 2025">
+            <ul><li>Architected RAG pipeline and engineered AI prompt mechanisms for historical education.</li></ul>
         </div>
     </div>
 
@@ -386,35 +265,43 @@
             <li><strong>Research Interests:</strong> Deep Learning, Unsupervised Anomaly Detection, Computer Vision, Spiking Neural Networks</li>
             <li><strong>Programming Languages:</strong> Python, Java, TypeScript, JavaScript, SQL, PostgreSQL, MongoDB</li>
             <li><strong>Frameworks & Tools:</strong> PyTorch, Express.js, React JS, Git/GitHub, Docker, Linux</li>
-            <li><strong>Languages:</strong> Vietnamese (Native), English (IELTS 6.0, 2023; retake planned in 2026)</li>
         </ul>
     </div>
 
-    <!-- Khung Modal (Popup) -->
+    <!-- Khung Modal (Popup) để phóng to ảnh -->
     <div id="imageModal" class="modal">
         <span class="close">&times;</span>
         <img class="modal-content" id="img01">
     </div>
 
-    <!-- Script xử lý sự kiện click -->
+    <!-- Script điều khiển chức năng thả xuống và popup -->
     <script>
+        // 1. Hàm Dropdown (Thả xuống/Thu lên)
+        function toggleSection(id) {
+            var content = document.getElementById(id);
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "flex";
+            } else {
+                content.style.display = "none";
+            }
+        }
+
+        // 2. Logic cho việc Phóng to ảnh (Modal)
         var modal = document.getElementById("imageModal");
         var modalImg = document.getElementById("img01");
 
+        // Lấy tất cả ảnh có class cert-img
         var images = document.getElementsByClassName("cert-img");
         for (var i = 0; i < images.length; i++) {
-            images[i].onclick = function(){
+            images[i].onclick = function() {
                 modal.style.display = "block";
                 modalImg.src = this.src;
             }
         }
 
+        // Đóng ảnh
         var span = document.getElementsByClassName("close")[0];
-
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-
+        span.onclick = function() { modal.style.display = "none"; }
         modal.onclick = function(event) {
             if (event.target !== modalImg) {
                 modal.style.display = "none";
